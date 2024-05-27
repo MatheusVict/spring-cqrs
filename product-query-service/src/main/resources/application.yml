@@ -3,7 +3,7 @@ spring:
     name: product-query-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/product_command
+    url: jdbc:postgresql://${PG_HOST:localhost}:5432/product_command
     username: postgres
     password: 123
   jpa:
@@ -12,7 +12,7 @@ spring:
       ddl-auto: update
   kafka:
     consumer:
-      bootstrap-servers: 192.168.0.101:9092
+      bootstrap-servers: ${KAFKA_HOST:localhost}:9092
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
