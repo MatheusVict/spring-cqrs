@@ -25,11 +25,9 @@ jobs:
           java-package: 'jdk'
           distribution: 'adopt'
         
-      - name: Set up the directory
-        run: cd /product-command-service
 
       - name: Build Book service Container Image
-        run: mvn spring-boot:build-image -DskipTests
+        run: cd product-command-service && mvn spring-boot:build-image -DskipTests
 
       - name: Push to Docker Hub Container Resgisty
         run: |
