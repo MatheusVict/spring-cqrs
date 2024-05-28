@@ -44,6 +44,10 @@ services:
       - "8080:8080"
     environment:
       - PG_HOST=db
+      - PG_PORT=5432
+      - PG_DB=product_command
+      - PG_USER=postgres
+      - PG_PASS=123
       - KAFKA_HOST=kafka
     depends_on:
       - db
@@ -57,6 +61,10 @@ services:
       - "8081:8081"
     environment:
       - PG_HOST=db
+      - PG_PORT=5432
+      - PG_DB=product_command
+      - PG_USER=postgres
+      - PG_PASS=123
       - KAFKA_HOST=kafka
     depends_on:
       - db
