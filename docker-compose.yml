@@ -26,7 +26,11 @@ services:
     ports:
       - "5431:5432"
     healthcheck:
-      test: [ "CMD-SHELL", "psql -h localhost -U postgres -d product_command -c 'SELECT 1;'" ]
+      test:
+        [
+          "CMD-SHELL",
+          "psql -h localhost -U postgres -d product_command -c 'SELECT 1;'"
+        ]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -40,14 +44,9 @@ services:
       - "8080:8080"
     environment:
       - PG_HOST=db
-      - PG_PORT=5432
-      - PG_DB=product_command
-      - PG_USER=postgres
-      - PG_PASS=123
       - KAFKA_HOST=kafka
     depends_on:
-      - db:
-          condition: service_healthy
+      - db
       - kafka
       - zookeeper
       - product-command-service
@@ -58,21 +57,13 @@ services:
       - "8081:8081"
     environment:
       - PG_HOST=db
-      - PG_PORT=5432
-      - PG_DB=product_command
-      - PG_USER=postgres
-      - PG_PASS=123
       - KAFKA_HOST=kafka
     depends_on:
-      - db:
-          condition: service_healthy
+      - db
       - kafka
       - zookeeper
-
-
 
 networks:
   default:
     driver: bridge
     name: spring-rcqrs
-  

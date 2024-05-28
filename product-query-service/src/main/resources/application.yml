@@ -3,13 +3,17 @@ spring:
     name: product-query-service
 
   datasource:
-  url: jdbc:postgresql://${PG_HOST:localhost}:${PG_PORT:5432}/${PG_DB:product_command}
-  username: ${PG_USER:postgres}
-  password: ${PG_PASS:123}
+    url: jdbc:postgresql://${PG_HOST:localhost}:${PG_PORT:5432}/${PG_DB:product_command}
+    username: ${PG_USER:postgres}
+    password: ${PG_PASS:123}
+
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   kafka:
     consumer:
       bootstrap-servers: ${KAFKA_HOST:localhost}:9092
